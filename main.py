@@ -41,10 +41,11 @@ while True:
         #Uses f-string to generate filename
         filename = f"{team[3]}{team[4]}_{team[1]}_{team[2]}"
 
-        #Writes the actual data to a txt file
+        #Writes the actual data to a file
         try:
             f = open(f"{cwd}/data/{team[1]}/{filename}.fmt", "w+")
             f.write(dataStr)
+            f.close()
         except OSError:
             print("Writing data failed!")
 
