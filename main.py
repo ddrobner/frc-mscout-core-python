@@ -1,8 +1,5 @@
 import pyzbar.pyzbar as pyzbar
 import cv2
-import sys
-import time
-import numpy as np
 import os
 
 camera = cv2.VideoCapture(0)
