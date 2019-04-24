@@ -66,6 +66,18 @@ class message:
                     self.data.append("")
             self.data[i] = msg
 
+    def inputHash(self, msg):
+        if msg.find("|") != -1:
+            index = int(msg[:msg.find["|"]])
+            tmpHash = msg[:msg.find["|"] + 1]
+
+            while len(self.codeHash) < index + 1:
+                self.codeHash = self.codeHash + ""
+            self.codeHash[index] = tmpHash
+        elif msg.find("-") != -1:
+            self.targetNumber = int(msg[:msg.find["-"]])
+            self.targetHash = msg[:msg.find("-") + 1]
+
 
     def hashData(self):
         concatData = ""
