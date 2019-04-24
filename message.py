@@ -43,15 +43,12 @@ class message:
             if iterations >= 3:
                 print(f"Length: {self.hashMessageLength}")
                 if len(msg) > self.hashMessageLength:
-                    #TODO Placeholder need to implement inputData
-                    print("placeholder inputData")
+                    self.inputData(msg)
                 else:
-                    #TODO Placeholder need to implement inputHash
-                    print("placeholder inputHash")
+                    self.inputHash(msg)
 
         if self.targetNumber != 0:
-            #TODO need to implement complete
-            print("Placeholder complete")
+            self.percentage = (float(self.complete())) / (float((self.targetNumber * 2)))
             print(f"Percentage: {self.percentage}")
 
         return (self.hashData() == self.targetHash) and (len(self.targetHash) == 8)
