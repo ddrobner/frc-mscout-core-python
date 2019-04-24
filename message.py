@@ -9,7 +9,7 @@ class message:
     lastIt = ""
     targetHash = ""
     hashData = ""
-    data = []
+    data = ""
     codeHash = ""
 
 
@@ -24,7 +24,7 @@ class message:
         self.lastIt = ""
         self.targetHash = ""
         self.hashData = ""
-        self.data = []
+        self.data = ""
         self.codeHash = ""
 
     def inputMessage(self, msg):
@@ -55,6 +55,17 @@ class message:
             print(f"Percentage: {self.percentage}")
 
         return (self.hashData() == self.targetHash) and (len(self.targetHash) == 8)
+
+    def inputData(self, msg):
+        temp = zlib.adler32(msg)
+        print(f"Data Input: {msg} with a hash of {temp}")
+
+        for i in range(0, len(self.codeHash) + 1):
+            if temp == self.codeHash[i]:
+                while len(self.data) < i + 1:
+                    self.data.append("")
+            self.data[i] = msg
+
 
     def hashData(self):
         concatData = ""
