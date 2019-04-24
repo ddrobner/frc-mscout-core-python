@@ -78,7 +78,6 @@ class message:
             self.targetNumber = int(msg[:msg.find["-"]])
             self.targetHash = msg[:msg.find("-") + 1]
 
-
     def hashData(self):
         concatData = ""
         i = 0
@@ -87,3 +86,13 @@ class message:
             concatData = concatData + self.data[i]
             i += 1
         return zlib.adler32(concatData)
+
+    def complete(self):
+        ret = 0
+        for i in range(len(self.codeHash) + 1):
+            if len(self.codeHash) > 0:
+                ret += 1
+        for i in range(len(self.data) + 1):
+            if len(self.data[i]) > 0:
+                ret += 1
+        return ret
