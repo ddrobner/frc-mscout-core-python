@@ -1,3 +1,5 @@
+import zlib
+
 class message:
 
     percentage = 0
@@ -7,7 +9,7 @@ class message:
     lastIt = ""
     targetHash = ""
     hashData = ""
-    data = ""
+    data = []
     codeHash = ""
 
 
@@ -22,7 +24,7 @@ class message:
         self.lastIt = ""
         self.targetHash = ""
         self.hashData = ""
-        self.data = ""
+        self.data = []
         self.codeHash = ""
 
     def inputMessage(self, msg):
@@ -38,5 +40,27 @@ class message:
             if self.hashMessageLength < 0 or self.hashMessageLength > len(msg):
                 self.hashMessageLength = len(msg)
 
+            if iterations >= 3:
+                print(f"Length: {self.hashMessageLength}")
+                if len(msg) > self.hashMessageLength:
+                    #TODO Placeholder need to implement inputData
+                    print("placeholder inputData")
+                else:
+                    #TODO Placeholder need to implement inputHash
+                    print("placeholder inputHash")
 
+        if self.targetNumber != 0:
+            #TODO need to implement complete
+            print("Placeholder complete")
+            print(f"Percentage: {self.percentage}")
 
+        return (self.hashData() == self.targetHash) and (len(self.targetHash) == 8)
+
+    def hashData(self):
+        concatData = ""
+        i = 0
+
+        while i < len(self.data):
+            concatData = concatData + self.data[i]
+            i += 1
+        return zlib.adler32(concatData)
