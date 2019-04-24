@@ -3,6 +3,7 @@ import cv2
 import sys
 import time
 import numpy as np
+import os
 
 camera = cv2.VideoCapture(0)
 
@@ -24,11 +25,32 @@ while True:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.imshow('frame', gray)
 
+    cwd = os.getcwd()
 
     decodedCode = decode(frame)
 
 
     if decodedCode:
+        dataStr = decodedCode[0].data.decode("utf-8")
+        #Splits it at the first semicolon, getting the team number
+        team = dataStr.split(";")
+
+        #Creates a directory for the team
+        try:
+            os.mkdir(f"{cwd}/data/{team[1]}")
+        except OSError:
+            print("Creating directory failed!")
+
+        #Uses f-string to generate filename
+        filename = f"{team[3]}{team[4]}_{team[1]}_{team[2]}"
+
+        #Writes the actual data to a txt file
+        try:
+            f = open(f"{cwd}/data/{team[1]}/{filename}.fmt", "w+")
+            f.write(dataStr)
+        except OSError:
+            print("Writing data failed!")
+
         break
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
