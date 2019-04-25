@@ -27,6 +27,12 @@ if sys.argv[1] == "single":
 else:
     multi = True
 
+def writeData(input):
+    formatted = ""
+    for i in range(len(input) + 1):
+        formatted += input[i]
+    return formatted
+
 while True:
     ret, frame = camera.read()
 
@@ -51,8 +57,7 @@ while True:
                 if currentCode:
                     abortCountdown = 200
                     if ms.inputMessage(currentCode):
-                        #TODO placeholder for writeData
-                        print("Placeholder writeData")
+                        decodedCode = ms.data
                         ms.clearMessage()
                         isFinished = True
                 else:
