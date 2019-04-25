@@ -1,6 +1,7 @@
 import zlib
 
-class message:
+
+class messageQR:
 
     percentage = 0
     hashMessageLength = -1
@@ -11,7 +12,6 @@ class message:
     hashData = ""
     data = ""
     codeHash = ""
-
 
     def __init__(self):
         self.clearMessage()

@@ -2,11 +2,13 @@ import pyzbar.pyzbar as pyzbar
 import cv2
 import os
 import sys
-from . import message
+from messageQR import messageQR
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 camera = cv2.VideoCapture(0)
 decodedCode = ""
-ms = message()
+ms = messageQR()
 
 def decode(im) :
   # Find barcodes and QR codes
@@ -25,18 +27,16 @@ else:
     multi = True
 
 while True:
+    ret, frame = camera.read()
 
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    cv2.imshow('frame', gray)
 
 
     isScanning = False
     cwd = os.getcwd()
 
     if multi == False:
-        ret, frame = camera.read()
-
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        cv2.imshow('frame', gray)
-
         decodedCode = decode(frame)
     else:
        if isScanning == False:
