@@ -51,7 +51,7 @@ class messageQR:
             self.percentage = (float(self.complete())) / (float((self.targetNumber * 2)))
             print(f"Percentage: {self.percentage}")
 
-        return (self.hashData() == self.targetHash) and (len(self.targetHash) == 8)
+        return (self.hashData == self.targetHash) and (len(self.targetHash) == 8)
 
     def inputData(self, msg):
         temp = zlib.adler32(msg)
@@ -60,7 +60,7 @@ class messageQR:
         for i in range(0, len(self.codeHash) + 1):
             if temp == self.codeHash[i]:
                 while len(self.data) < i + 1:
-                    self.data.append("")
+                    self.data += ""
             self.data[i] = msg
 
     def inputHash(self, msg):

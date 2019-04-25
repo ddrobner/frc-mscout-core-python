@@ -46,34 +46,33 @@ while True:
     if not multi:
         decodedCode = decode(frame)
     else:
-       if not isScanning:
+        if not isScanning:
+            abortCountdown = 200
             isScanning = True
             isFinished = False
             abort = False
             output = ""
 
             while not isFinished and not abort:
+                ret, frame = camera.read()
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                cv2.imshow('frame', gray)
                 currentCode = decode(frame)
                 if currentCode:
-                    #print(currentCode[0].data.decode("utf-8"))
-
-                    abortCountdown = 200
                     if ms.inputMessage(currentCode[0].data.decode("utf-8")):
                         decodedCode = ms.data
                         ms.clearMessage()
                         isFinished = True
+                        break
+
 
                 else:
                     abortCountdown -= 1
                 abort = True if abortCountdown <= 0 else False
                 if cv2.waitKey(1) == 27:
-                    ms.clearMessage()
+                   ms.clearMessage()
                 if abort:
                     print("Scan Aborted!")
-
-
-
-
 
     if decodedCode:
         dataStr = decodedCode[0].data.decode("utf-8")
