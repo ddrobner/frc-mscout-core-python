@@ -55,14 +55,17 @@ while True:
             while not isFinished and not abort:
                 currentCode = decode(frame)
                 if currentCode:
+                    #print(currentCode[0].data.decode("utf-8"))
+
                     abortCountdown = 200
-                    if ms.inputMessage(currentCode):
+                    if ms.inputMessage(currentCode[0].data.decode("utf-8")):
                         decodedCode = ms.data
                         ms.clearMessage()
                         isFinished = True
+
                 else:
                     abortCountdown -= 1
-                abort = abortCountdown <= 0
+                abort = True if abortCountdown <= 0 else False
                 if cv2.waitKey(1) == 27:
                     ms.clearMessage()
                 if abort:
