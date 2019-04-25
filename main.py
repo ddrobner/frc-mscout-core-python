@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 camera = cv2.VideoCapture(0)
 decodedCode = ""
+abortCountdown = 0
 ms = messageQR()
 
 def decode(im) :
@@ -36,13 +37,33 @@ while True:
     isScanning = False
     cwd = os.getcwd()
 
-    if multi == False:
+    if not multi:
         decodedCode = decode(frame)
     else:
-       if isScanning == False:
+       if not isScanning:
             isScanning = True
             isFinished = False
             abort = False
+            output = ""
+
+            while not isFinished and not abort:
+                currentCode = decode(frame)
+                if currentCode:
+                    abortCountdown = 200
+                    if ms.inputMessage(currentCode):
+                        #TODO placeholder for writeData
+                        print("Placeholder writeData")
+                        ms.clearMessage()
+                        isFinished = True
+                else:
+                    abortCountdown -= 1
+                abort = abortCountdown <= 0
+                if cv2.waitKey(1) == 27:
+                    ms.clearMessage()
+                if abort:
+                    print("Scan Aborted!")
+
+
 
 
 
