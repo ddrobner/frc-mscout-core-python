@@ -13,7 +13,7 @@ class message:
     codeHash = ""
 
 
-    def message(self):
+    def __init__(self):
         self.clearMessage()
 
     def clearMessage(self):
