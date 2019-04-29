@@ -47,7 +47,7 @@ while True:
     cv2.imshow('frame', gray)
 
     if not multi:
-        decodedCode = decode(frame)
+        decodedCode = decode(gray)
     elif multi:
         if not isScanning:
             abortCountdown = 200
@@ -60,7 +60,7 @@ while True:
                 ret, frame = camera.read()
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 cv2.imshow('frame', gray)
-                currentCode = decode(frame)
+                currentCode = decode(gray)
                 if currentCode:
                     if ms.inputMessage(currentCode[0].data.decode("utf-8")):
                         decodedCode = ms.data
