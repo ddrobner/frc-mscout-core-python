@@ -33,19 +33,21 @@ def writeData(input):
         formatted += input[i]
     return formatted
 
+isScanning = False
+cwd = os.getcwd()
+
 while True:
-    ret, frame = camera.read()
-
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    cv2.imshow('frame', gray)
-
-
-    isScanning = False
-    cwd = os.getcwd()
 
     if not multi:
-        decodedCode = decode(frame)
-    else:
+        while True:
+            ret, frame = camera.read()
+
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            cv2.imshow('frame', gray)
+            decodedCode = decode(frame)
+            if decodedCode:
+                decodedCode = decode(frame)
+    elif multi:
         if not isScanning:
             abortCountdown = 200
             isScanning = True
@@ -53,7 +55,7 @@ while True:
             abort = False
             output = ""
 
-            while not isFinished and not abort:
+            while not isFinished:
                 ret, frame = camera.read()
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 cv2.imshow('frame', gray)
@@ -63,17 +65,20 @@ while True:
                         decodedCode = ms.data
                         ms.clearMessage()
                         isFinished = True
+                        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA###############################")
                         break
-
-
                 else:
                     abortCountdown -= 1
+
                 abort = True if abortCountdown <= 0 else False
                 if cv2.waitKey(1) == 27:
-                   ms.clearMessage()
+                    ms.clearMessage()
                 if abort:
                     print("Scan Aborted!")
 
+    else:
+        print(f"Invalid Argument {sys.argv[1]}!")
+        sys.exit(1)
     if decodedCode:
         dataStr = decodedCode[0].data.decode("utf-8")
         #Splits it at the first semicolon, getting the team number
