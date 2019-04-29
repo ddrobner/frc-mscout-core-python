@@ -1,4 +1,4 @@
-from adler32hash import adler32hash
+import zlib
 
 class messageQR:
 
@@ -11,7 +11,6 @@ class messageQR:
     hashData = ""
     data = ""
     codeHash = ""
-    hasher = adler32hash()
     lastIt = ""
 
     def __init__(self):
@@ -55,7 +54,7 @@ class messageQR:
         return (self.hashData == self.targetHash) and (len(self.targetHash) == 8)
 
     def inputData(self, msg):
-        temp = self.hasher.hashInput(msg)
+        temp = zlib.adler32(msg)
         print(f"Data Input: {msg} with a hash of {temp}")
 
         for i in range(0, len(self.codeHash) + 1):
@@ -83,7 +82,7 @@ class messageQR:
         while i < len(self.data):
             concatData = concatData + self.data[i]
             i += 1
-        return self.hasher.hashInput(concatData)
+        return zlib.adler32(concatData)
 
     def complete(self):
         ret = 0
