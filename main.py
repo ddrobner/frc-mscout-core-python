@@ -47,6 +47,7 @@ while True:
             decodedCode = decode(frame)
             if decodedCode:
                 decodedCode = decode(frame)
+                break
     elif multi:
         if not isScanning:
             abortCountdown = 200

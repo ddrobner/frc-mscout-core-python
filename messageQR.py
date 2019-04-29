@@ -12,6 +12,7 @@ class messageQR:
     data = ""
     codeHash = ""
     hasher = adler32hash()
+    lastIt = ""
 
     def __init__(self):
         self.clearMessage()
@@ -26,14 +27,14 @@ class messageQR:
         self.hashData = ""
         self.data = ""
         self.codeHash = ""
+        self.lastIt = ""
 
     def inputMessage(self, msg):
         iterations = 0
-        lastIt = msg
 
-        if msg != lastIt:
+        if msg != self.lastIt:
             print("Inputting Message...")
-
+            self.lastIt = msg
             iterations += 1
             print(f"Iterations: {iterations}")
 
