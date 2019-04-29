@@ -22,7 +22,10 @@ def decode(im) :
 
   return decodedObjects
 
-if sys.argv[1] == "single":
+if len(sys.argv) <= 1:
+    print("No Argument")
+    exit(1)
+elif sys.argv[1] == "single":
     multi = False
 else:
     multi = True
@@ -38,16 +41,13 @@ cwd = os.getcwd()
 
 while True:
 
-    if not multi:
-        while True:
-            ret, frame = camera.read()
+    ret, frame = camera.read()
 
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            cv2.imshow('frame', gray)
-            decodedCode = decode(frame)
-            if decodedCode:
-                decodedCode = decode(frame)
-                break
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    cv2.imshow('frame', gray)
+
+    if not multi:
+        decodedCode = decode(frame)
     elif multi:
         if not isScanning:
             abortCountdown = 200
