@@ -66,7 +66,6 @@ while True:
                         decodedCode = ms.data
                         ms.clearMessage()
                         isFinished = True
-                        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA###############################")
                         break
                 else:
                     abortCountdown -= 1
