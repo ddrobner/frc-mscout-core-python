@@ -51,7 +51,6 @@ while True:
 
     decodedCode = decode(frame)
 
-
     if decodedCode:
         writeData(decodedCode)
 
