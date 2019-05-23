@@ -15,6 +15,31 @@ def decode(im) :
 
   return decodedObjects
 
+def writeData(code):
+    data = code[0].data.decode("utf-8").split(";")
+
+    # Creates directory and returns false if it fails
+    try:
+        os.mkdir(f"{cwd}/data/{data[1]}")
+        print(f"Created Folder: {data[1]}")
+    except OSError:
+        print("Creating Directory Failed!")
+        return False
+    # Creates a filename substituting the appropriate variables with f-strings
+    filename = f"{data[3]}{data[4]}_{data[1]}_{data[2]}"
+
+    # Tries to write the data. If it is successful it will return true,
+    # otherwise false
+
+    try:
+        f = open(f"{cwd}/data/{data[1]}/{filename}.fmt", "+w")
+        f.write(';'.join(data))
+        f.close()
+        print(f"Created File {filename}")
+        return True
+    except OSError:
+        print("Creating File Failed!")
+        return False
 
 while True:
     ret, frame = camera.read()
@@ -28,28 +53,7 @@ while True:
 
 
     if decodedCode:
-        dataStr = decodedCode[0].data.decode("utf-8")
-        #Splits it at the first semicolon, getting the team number
-        team = dataStr.split(";")
-
-        #Creates a directory for the team
-        try:
-            os.mkdir(f"{cwd}/data/{team[1]}")
-        except OSError:
-            print("Creating directory failed!")
-
-        #Uses f-string to generate filename
-        filename = f"{team[3]}{team[4]}_{team[1]}_{team[2]}"
-
-        #Writes the actual data to a file
-        try:
-            f = open(f"{cwd}/data/{team[1]}/{filename}.fmt", "w+")
-            f.write(dataStr)
-            f.close()
-        except OSError:
-            print("Writing data failed!")
-
-        break
+        writeData(decodedCode)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
