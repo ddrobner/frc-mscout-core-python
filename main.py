@@ -52,7 +52,6 @@ while True:
     decodedCode = decode(frame)
 
     if decodedCode:
-        writeData(decodedCode)
         break
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
