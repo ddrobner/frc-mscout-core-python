@@ -1,7 +1,9 @@
 import pyzbar.pyzbar as pyzbar
 import cv2
 import os
+from fileWriter import fileWriter
 
+fw = fileWriter()
 camera = cv2.VideoCapture(0)
 
 def decode(im) :
@@ -26,8 +28,8 @@ while True:
     decodedCode = decode(frame)
 
     if decodedCode:
+        fw.writeData(decodedCode)
         break
-
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

@@ -1,9 +1,9 @@
 class fileWriter:
-    def __init__:
+    def __init__(self):
         pass
 
-   def writeData(code):
-       data = code[0].data.decode("utf-8").split(";")
+    def writeData(self, code):
+        data = code[0].data.decode("utf-8").split(";")
 
     # Creates directory and returns false if it fails
         try:
