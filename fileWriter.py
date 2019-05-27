@@ -28,4 +28,3 @@ class fileWriter:
             print("Creating File Failed!")
             return False
 
-
