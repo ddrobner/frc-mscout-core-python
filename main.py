@@ -6,17 +6,6 @@ from fileWriter import fileWriter
 fw = fileWriter()
 camera = cv2.VideoCapture(0)
 
-def decode(im) :
-  # Find barcodes and QR codes
-  decodedObjects = pyzbar.decode(im)
-
-  # Print results
-  for obj in decodedObjects:
-    print('Type : ', obj.type)
-    print('Data : ', obj.data,'\n')
-
-  return decodedObjects
-
 while True:
     ret, frame = camera.read()
 
@@ -25,7 +14,7 @@ while True:
 
     cwd = os.getcwd()
 
-    decodedCode = decode(frame)
+    decodedCode = pyzbar.decode(frame)
 
     if decodedCode:
         fw.writeData(decodedCode)
