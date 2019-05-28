@@ -5,10 +5,10 @@ class streamDecoder:
 
     # TODO Implement stream decoding
 
-    def __init__():
+    def __init__(self):
         self.reset()
 
-    def reset():
+    def reset(self):
         self.dataArr = []
         self.codeArr = []
         self.qrHash = []
