@@ -14,18 +14,13 @@ class Window(Frame):
 
     def init_window(self):
         self.master.title("MScout Core")
-
         self.pack(fill=BOTH, expand=1)
 
         singleButton = Button(self, text="Single Code", command=self.decode.single)
         singleButton.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-        multiButton = Button(self, text="QR Stream", command=self.showError)
+        multiButton = Button(self, text="QR Stream", command= lambda: messagebox.showinfo("Placeholder", "Placeholder"))
         multiButton.place(relx=0.5, rely=0.6, anchor=CENTER)
-
-    # Need this so I can show a message without it opening on program start
-    def showError(self):
-        messagebox.showinfo("Placeholder", "Placeholder")
 
 # Tkinter Boilerplate
 root = Tk()
