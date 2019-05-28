@@ -17,11 +17,14 @@ class Window(Frame):
         self.pack(fill=BOTH, expand=1)
 
         cameraEntry = Entry()
-        cameraEntry.place(relx=0.5, rely=0.2, anchor=CENTER)
+        cameraEntry.place(relx=0.5, rely=0.3, anchor=CENTER)
         cameraEntry.insert(INSERT, "0")
 
+        entryLabel = Label(text="Enter camera ID")
+        entryLabel.place(relx=0.5, rely=0.225, anchor=CENTER)
+
         singleButton = Button(self, text="Single Code", command= lambda: self.decode.single(int(cameraEntry.get())))
-        singleButton.place(relx=0.5, rely=0.4, anchor=CENTER)
+        singleButton.place(relx=0.5, rely=0.45, anchor=CENTER)
 
         multiButton = Button(self, text="QR Stream", command= lambda: messagebox.showinfo("Placeholder", "Placeholder"))
         multiButton.place(relx=0.5, rely=0.6, anchor=CENTER)
