@@ -4,10 +4,13 @@ import pyzbar.pyzbar as pyzbar
 from fileWriter import fileWriter
 
 class decoder:
+    # Creates a filewriter object
     def __init__(self):
         self.fw = fileWriter()
 
     def single(self, cameraIdx):
+        # Creates camera (needs to be in here so I can pass the camera id as an
+        # argument)
         self.camera = cv2.VideoCapture(cameraIdx)
         while True:
             ret, frame = self.camera.read()

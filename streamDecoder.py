@@ -3,6 +3,8 @@ class streamDecoder:
     codeArr = []
     qrHash = []
 
+    # TODO Implement stream decoding
+
     def __init__():
         self.reset()
 
