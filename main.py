@@ -16,7 +16,11 @@ class Window(Frame):
         self.master.title("MScout Core")
         self.pack(fill=BOTH, expand=1)
 
-        singleButton = Button(self, text="Single Code", command=self.decode.single)
+        cameraEntry = Entry()
+        cameraEntry.place(relx=0.5, rely=0.2, anchor=CENTER)
+        cameraEntry.insert(INSERT, "0")
+
+        singleButton = Button(self, text="Single Code", command= lambda: self.decode.single(int(cameraEntry.get())))
         singleButton.place(relx=0.5, rely=0.4, anchor=CENTER)
 
         multiButton = Button(self, text="QR Stream", command= lambda: messagebox.showinfo("Placeholder", "Placeholder"))

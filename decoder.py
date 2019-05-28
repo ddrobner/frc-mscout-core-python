@@ -6,9 +6,9 @@ from fileWriter import fileWriter
 class decoder:
     def __init__(self):
         self.fw = fileWriter()
-        self.camera = cv2.VideoCapture(0)
 
-    def single(self):
+    def single(self, cameraIdx):
+        self.camera = cv2.VideoCapture(cameraIdx)
         while True:
             ret, frame = self.camera.read()
 
