@@ -20,7 +20,7 @@ class Window(Frame):
         cameraEntry.place(relx=0.5, rely=0.3, anchor=CENTER)
         cameraEntry.insert(INSERT, "0")
 
-        entryLabel = Label(text="Enter camera ID")
+        entryLabel = Label(text="Enter camera ID (usually 0)")
         entryLabel.place(relx=0.5, rely=0.225, anchor=CENTER)
 
         singleButton = Button(self, text="Single Code", command= lambda: self.decode.single(int(cameraEntry.get())))
