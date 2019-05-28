@@ -7,6 +7,6 @@ class streamDecoder:
         self.reset()
 
     def reset():
-        this.dataArr = []
-        this.codeArr = []
-        this.qrHash = []
+        self.dataArr = []
+        self.codeArr = []
+        self.qrHash = []

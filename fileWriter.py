@@ -9,11 +9,11 @@ class fileWriter:
 
         # Creates directory and returns false if it fails
         try:
-            os.mkdir(f"{cwd}/data/{data[1]}")
+            os.mkdir(f"{self.cwd}/data/{data[1]}")
             print(f"Created Folder: {data[1]}")
         except OSError:
             print("Creating Directory Failed!")
-            return False
+
         # Creates a filename substituting the appropriate variables with f-strings
         filename = f"{data[3]}{data[4]}_{data[1]}_{data[2]}"
 
@@ -21,7 +21,7 @@ class fileWriter:
         # otherwise false
 
         try:
-            f = open(f"{cwd}/data/{data[1]}/{filename}.fmt", "+w")
+            f = open(f"{self.cwd}/data/{data[1]}/{filename}.fmt", "+w")
             f.write(';'.join(data))
             f.close()
             print(f"Created File {filename}")

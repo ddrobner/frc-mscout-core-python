@@ -20,12 +20,12 @@ class decoder:
             decodedCode = pyzbar.decode(frame)
 
             if decodedCode:
-                this.fw.writeData(decodedCode)
-                this.camera.release()
+                self.fw.writeData(decodedCode)
+                self.camera.release()
                 cv2.destroyAllWindows()
                 break
             if cv2.waitKey(1) & 0xFF == ord('q'):
-                this.camera.release()
+                self.camera.release()
                 cv2.destroyAllWindows()
                 break
 
