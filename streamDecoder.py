@@ -4,7 +4,7 @@ class streamDecoder:
     qrHash = []
 
     def __init__():
-        this.reset()
+        self.reset()
 
     def reset():
         this.dataArr = []

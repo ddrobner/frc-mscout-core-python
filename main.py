@@ -1,26 +1,24 @@
-import pyzbar.pyzbar as pyzbar
-import cv2
-import os
-from fileWriter import fileWriter
+from tkinter import *
+from decoder import decoder
 
-fw = fileWriter()
-camera = cv2.VideoCapture(0)
+class Window(Frame):
 
-while True:
-    ret, frame = camera.read()
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.decode = decoder()
+        self.master = master
+        self.init_window()
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    cv2.imshow('Scan Code', gray)
+    def init_window(self):
+        self.master.title("MScout Core")
 
-    cwd = os.getcwd()
+        self.pack(fill=BOTH, expand=1)
 
-    decodedCode = pyzbar.decode(frame)
+        singleButton = Button(self, text="Single Code", command=self.decode.single)
+        singleButton.place(x=150, y=0)
 
-    if decodedCode:
-        fw.writeData(decodedCode)
-        break
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+root = Tk()
+prog = Window(root)
+root.geometry("400x300")
+root.mainloop()
 
-camera.release()
-cv2.destroyAllWindows()

@@ -1,11 +1,13 @@
+import os
+
 class fileWriter:
     def __init__(self):
-        pass
+        self.cwd = os.getcwd()
 
     def writeData(self, code):
         data = code[0].data.decode("utf-8").split(";")
 
-    # Creates directory and returns false if it fails
+        # Creates directory and returns false if it fails
         try:
             os.mkdir(f"{cwd}/data/{data[1]}")
             print(f"Created Folder: {data[1]}")
