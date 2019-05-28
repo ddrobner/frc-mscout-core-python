@@ -1,8 +1,11 @@
 from tkinter import *
+from tkinter import messagebox
+from tkinter.ttk import *
 from decoder import decoder
 
 class Window(Frame):
 
+    # Tkinter Boilerplate
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.decode = decoder()
@@ -15,10 +18,20 @@ class Window(Frame):
         self.pack(fill=BOTH, expand=1)
 
         singleButton = Button(self, text="Single Code", command=self.decode.single)
-        singleButton.place(x=150, y=0)
+        singleButton.place(relx=0.5, rely=0.4, anchor=CENTER)
 
+        multiButton = Button(self, text="QR Stream", command=self.showError)
+        multiButton.place(relx=0.5, rely=0.6, anchor=CENTER)
+
+    # Need this so I can show a message without it opening on program start
+    def showError(self):
+        messagebox.showinfo("Placeholder", "Placeholder")
+
+# Tkinter Boilerplate
 root = Tk()
 prog = Window(root)
 root.geometry("400x300")
+root.style = Style()
+root.style.theme_use("clam")
 root.mainloop()
 
