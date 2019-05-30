@@ -31,4 +31,3 @@ class decoder:
                 self.camera.release()
                 cv2.destroyAllWindows()
                 break
-
