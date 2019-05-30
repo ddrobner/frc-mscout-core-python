@@ -3,6 +3,7 @@ import os
 import pyzbar.pyzbar as pyzbar
 from fileWriter import fileWriter
 
+
 class decoder:
     # Creates a filewriter object
     def __init__(self):
