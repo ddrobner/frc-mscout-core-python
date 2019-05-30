@@ -5,7 +5,6 @@ from decoder import decoder
 
 class Window(Frame):
 
-
     # Tkinter Boilerplate
     def __init__(self, master=None):
         Frame.__init__(self, master)
