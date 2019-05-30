@@ -3,10 +3,12 @@ class streamDecoder:
     codeArr = []
     qrHash = []
 
-    def __init__():
-        this.reset()
+    # TODO Implement stream decoding
 
-    def reset():
-        this.dataArr = []
-        this.codeArr = []
-        this.qrHash = []
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.dataArr = []
+        self.codeArr = []
+        self.qrHash = []
