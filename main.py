@@ -24,10 +24,10 @@ class Window(Frame):
         entryLabel = Label(text="Enter camera ID (usually 0)")
         entryLabel.place(relx=0.5, rely=0.225, anchor=CENTER)
 
-        singleButton = Button(self, text="Single Code", command= lambda:self.decode.single(int(cameraEntry.get())))
+        singleButton = Button(self, text="Single Code", command=lambda:self.decode.single(int(cameraEntry.get())))
         singleButton.place(relx=0.5, rely=0.45, anchor=CENTER)
 
-        multiButton = Button(self, text="QR Stream", command= lambda:messagebox.showinfo("Placeholder", "Placeholder"))
+        multiButton = Button(self, text="QR Stream", command=lambda:messagebox.showinfo("Placeholder", "Placeholder"))
         multiButton.place(relx=0.5, rely=0.6, anchor=CENTER)
 
 # Tkinter Boilerplate
