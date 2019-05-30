@@ -1,5 +1,4 @@
 import cv2
-import os
 import pyzbar.pyzbar as pyzbar
 from fileWriter import fileWriter
 
