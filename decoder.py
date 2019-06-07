@@ -29,3 +29,8 @@ class decoder:
                 self.camera.release()
                 cv2.destroyAllWindows()
                 break
+
+    def stream(self, cameraIdx):
+        self.camera = cv2.VideoCapture(cameraIdx)
+
+        # TODO Implement stream decoding
